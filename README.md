@@ -9,17 +9,12 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/hemenduroy/cursor-soundfx?style=flat-square" alt="GitHub release"/>
-  <img src="https://img.shields.io/github/release-date/hemenduroy/cursor-soundfx?style=flat-square" alt="Release date"/>
-  <img src="https://img.shields.io/github/last-commit/hemenduroy/cursor-soundfx?style=flat-square" alt="Last commit"/>
-  <img src="https://img.shields.io/github/license/hemenduroy/cursor-soundfx?style=flat-square" alt="License"/>
+  <img src="https://img.shields.io/badge/release-1.0.0-blue?style=flat-square" alt="Release"/>
+  <img src="https://img.shields.io/badge/release%20date-2025--03--10-blue?style=flat-square" alt="Release date"/>
+  <img src="https://img.shields.io/badge/author-Hemendu%20Roy-blue?style=flat-square" alt="Author"/>
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License"/>
   <img src="https://img.shields.io/github/stars/hemenduroy/cursor-soundfx?style=flat-square" alt="Stars"/>
   <img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square" alt="Node"/>
-  <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey?style=flat-square" alt="Platform"/>
-</p>
-
-<p align="center">
-  <sub>by <strong>Hemendu Roy</strong></sub>
 </p>
 
 ---
@@ -72,4 +67,4 @@ Paths can be relative to the package `sounds/` folder or absolute.
 
 ## 📄 License
 
-MIT © **Hemendu Roy**
+**Open Source** — [MIT License](LICENSE). You can use, modify, and distribute this software freely. © **Hemendu Roy**
