@@ -1,0 +1,10 @@
+---
+description: When you run a terminal command and it fails (non-zero exit), call the play_sound MCP tool with type "error". When a command succeeds (exit 0), call play_sound with type "success".
+alwaysApply: true
+---
+
+When you run a terminal command (e.g. in chat) and it exits with a non-zero exit code (failure), immediately call the MCP tool **play_sound** with `{ "type": "error" }`.
+
+When you run a terminal command and it exits with code 0 (success), call the MCP tool **play_sound** with `{ "type": "success" }`.
+
+This gives the user audio feedback for agent-run commands. Only call play_sound for commands that you (the agent) executed; do not call it for commands the user ran themselves in the terminal.

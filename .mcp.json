@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cursor-soundfx": {
+      "command": "npx",
+      "args": ["-y", "cursor-soundfx"]
+    }
+  }
+}

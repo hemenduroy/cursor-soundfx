@@ -2,19 +2,26 @@
 
 A minimal MCP server that plays sound effects in Cursor when development events occur (command failures, build errors). **Zero dependencies**; uses OS built-in players (afplay / PowerShell / aplay).
 
-- **One-click install**: click the link below → Cursor prompts → click Install → done
+- **One-shot install (Plugin)**: install the Cursor plugin → MCP + rule are set up; when the agent runs a command that fails or succeeds, you hear the sound
 - **Lightweight**: no npm dependencies, Node built-ins only
 - **Offline**: runs locally, no network
 
 ## Install
 
-**One-click (recommended)** – click this link. Cursor will prompt to add the server; click **Install**, then restart Cursor:
+**Option A: Cursor Plugin (one-shot, MCP + rules)**  
+Install from the **Cursor Marketplace** (once the plugin is listed). That installs both the MCP server and a rule so the agent automatically calls `play_sound` when it runs a command that fails or succeeds. One click, no extra setup.
+
+- In Cursor: open the marketplace (e.g. Settings → Plugins / Marketplace), search for **cursor-soundfx**, click Install.  
+- To **publish** the plugin: push this repo to GitHub, then submit at [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish). The repo already contains `.cursor-plugin/`, `.mcp.json`, and `rules/play-sound-on-failure.mdc`.
+
+**Option B: Add to Cursor link (MCP only)**  
+Click this link. Cursor will prompt to add the server; click **Install**, then restart Cursor:
 
 **[Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=cursor-soundfx&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImN1cnNvci1zb3VuZGZ4Il19)**
 
-*(Only works after you [publish the package to npm](https://docs.npmjs.com/cli/v8/commands/npm-publish); until then the link will add the server but it may 404 when Cursor runs it.)*
+*(Requires the package on npm. With Option B you get the MCP only; add the rule yourself from `rules/play-sound-on-failure.mdc` or Cursor Settings → Rules.)*
 
-**Or from the terminal:**
+**Option C: Terminal (MCP only):**
 
 ```bash
 npx -y cursor-soundfx install
@@ -58,23 +65,56 @@ Paths are relative to the package `sounds/` directory, or use absolute paths.
 
 **Linux:** requires `aplay` (install `alsa-utils` if needed). macOS and Windows use built-in players.
 
-## Cursor rule example
+## Rule (included in the plugin)
 
-In your project or user rules:
+If you install via **Option A (Plugin)**, the rule is already included. If you use Option B or C, add this behavior (e.g. paste into Cursor Settings → Rules or use the text in `rules/play-sound-on-failure.mdc`):
 
-- When a terminal command exits with a non-zero code → `play_sound({ "type": "error" })`
-- When a build succeeds → `play_sound({ "type": "success" })`
+- When the agent runs a terminal command and it fails (non-zero exit) → call `play_sound({ "type": "error" })`
+- When the agent runs a terminal command and it succeeds → call `play_sound({ "type": "success" })`
 
 ## Project layout
 
 ```
 cursor-soundfx/
+├── .cursor-plugin/
+│   └── plugin.json       # Plugin manifest (for Marketplace)
+├── .mcp.json             # MCP config (used by the plugin)
+├── rules/
+│   └── play-sound-on-failure.mdc   # Rule: call play_sound when agent runs commands
 ├── package.json
 ├── server.js
 ├── install.js
-├── sounds/          # Example sounds: error.wav, success.wav
+├── sounds/               # Example sounds: error.wav, success.wav
 └── README.md
 ```
+
+## Testing before publish
+
+Because `npx cursor-soundfx` hits the npm registry, you need to point Cursor at your **local** copy until the package is published.
+
+1. **Point Cursor at your local server**  
+   Edit `~/.cursor/mcp.json` and set the cursor-soundfx entry to:
+
+   ```json
+   "cursor-soundfx": {
+     "command": "node",
+     "args": ["/ABSOLUTE/PATH/TO/cursor-soundfx/server.js"]
+   }
+   ```  
+   Use your real path (e.g. `/Users/you/cursor-soundfx/server.js`).
+
+2. **Restart Cursor** so it starts the server from that path.
+
+3. **Test the MCP tool**  
+   In a Cursor chat, ask the agent: *“Call the play_sound MCP tool with type error.”*  
+   You should hear your error sound. Try *“play_sound with type success”* for the other.
+
+4. **Test the install command** (optional)  
+   From the project root run: `node server.js install`  
+   That updates `~/.cursor/mcp.json` to use `npx cursor-soundfx`. After that, Cursor would 404 until you publish, so either change `mcp.json` back to the `node` + path above, or publish and then use the npx config.
+
+5. **Test the one-click link** (optional)  
+   Click the [Add to Cursor](#install) link. Cursor should prompt to add the server. After adding, Cursor will try to run it via npx and get 404 until you publish—so for local testing, keep using the `node` + path in `mcp.json` as in step 1.
 
 ## License
 
