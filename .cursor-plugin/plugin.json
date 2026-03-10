@@ -4,5 +4,6 @@
   "version": "1.0.0",
   "author": { "name": "Cursor SoundFX" },
   "keywords": ["sound", "audio", "mcp", "feedback", "cursor"],
-  "license": "MIT"
+  "license": "MIT",
+  "logo": "assets/logo.svg"
 }

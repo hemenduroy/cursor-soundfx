@@ -88,7 +88,8 @@ cursor-soundfx/
 └── README.md
 ```
 
-## Testing before publish
+
+## Testing MCP only (before publish)
 
 Because `npx cursor-soundfx` hits the npm registry, you need to point Cursor at your **local** copy until the package is published.
 
