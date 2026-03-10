@@ -1,0 +1,18 @@
+{
+  "name": "cursor-soundfx",
+  "version": "1.0.0",
+  "description": "MCP server for Cursor IDE sound effects on build/terminal/agent events",
+  "main": "server.js",
+  "bin": {
+    "cursor-soundfx": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["cursor", "mcp", "sound", "soundfx", "ide"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}
