@@ -2,7 +2,7 @@
   "name": "cursor-soundfx",
   "description": "Play sound effects in Cursor when the agent runs commands that fail or succeed. Includes MCP server and a rule so the agent automatically calls play_sound on failure/success.",
   "version": "1.0.0",
-  "author": { "name": "Cursor SoundFX" },
+  "author": { "name": "Hemendu Roy" },
   "keywords": ["sound", "audio", "mcp", "feedback", "cursor"],
   "license": "MIT",
   "logo": "assets/logo.svg"

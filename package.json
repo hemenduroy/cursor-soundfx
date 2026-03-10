@@ -10,6 +10,7 @@
     "start": "node server.js"
   },
   "keywords": ["cursor", "mcp", "sound", "soundfx", "ide"],
+  "author": "Hemendu Roy",
   "license": "MIT",
   "engines": {
     "node": ">=18"
